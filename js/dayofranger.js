@@ -211,8 +211,6 @@
                 color: '#666',
                 borderRadius: '3px',
                 padding: '8px',
-                borderCollapse: 'collapse',
-                borderSpacing: 0,
             },
             i18n: {
                 weekdays:  ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
@@ -230,7 +228,7 @@
         }
         this.holderElement = holderElement;
         this.tableElement = document.createElement('table');
-        this.containerElement = document.createElement('table');
+        this.containerElement = document.createElement('div');
         this.datePicker = datePicker;
         this.currentDate = new Date(currentDate).setHours(0,0,0,0);
         this.afterPickDate = afterPickDate;
@@ -253,6 +251,7 @@
     DOR.prototype.init = function(userConfig) {
         this.config = Object.assign(this.defaultConfig, userConfig);
         this.holderElement.addEventListener('click', this.eventShowCalendar.bind(this), false);// add click event listener
+        this.tableElement.setAttribute('cellpadding','0');
         this.utils.setCss(this.containerElement, {
             position: 'absolute',
             display: 'none',
@@ -356,7 +355,7 @@
         this.render();
     };
 
-    DOR.prototype.eventShowCalendar = function(event) {
+    DOR.prototype.eventShowCalendar = function() {
         this.setPositionToContainer();
         this.utils.setCss(this.containerElement, {
             display: 'block',
@@ -365,7 +364,7 @@
         document.addEventListener('mousedown', this);//check this.eventHandler
     };
 
-    DOR.prototype.setPositionToContainer = function (event) {
+    DOR.prototype.setPositionToContainer = function () {
         var viewPort = this.utils.getViewport();
 
         var containerHeight = this.containerElement.offsetHeight;
@@ -553,14 +552,8 @@
 
     DOR.prototype.render = function() {
         var table = this.createTableNode();
-
-        var tr = document.createElement('tr');
-        var td = document.createElement('td');
-        td.appendChild(table);
-        tr.appendChild(td);
-
         this.containerElement.innerHTML = '';
-        this.containerElement.appendChild(tr);
+        this.containerElement.appendChild(table);
         this.utils.setCss(this.containerElement, this.getContainerCss());
         document.body.appendChild(this.containerElement);
     };
