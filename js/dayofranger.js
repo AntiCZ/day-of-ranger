@@ -196,7 +196,7 @@
             spanDisabledCss: {
                 width: '40px',
                 height: '40px',
-                background: '#ccc',
+                background: 'rgba(204, 204, 204, 0.6)',
                 display: 'block',
                 lineHeight: '40px',
                 color: '#f9f9f9',
