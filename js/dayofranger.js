@@ -47,7 +47,7 @@
     };
 
     var DORPrickerRange = function(state, isDateSpecial, isDateDisabled) {
-        this.state = typeof state === 'undefined' ? {from: null, to: null} : state;
+        this.state = typeof state === 'undefined' ? {from: null, to: null} : {from: new Date(state.from.setHours(0,0,0,0)), to: new Date(state.to.setHours(0,0,0,0))};
         this.isDateSpecial = typeof isDateSpecial === 'function' ? isDateSpecial : function(date){
             return false;
         };

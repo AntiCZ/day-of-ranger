@@ -58,6 +58,7 @@
         <div class="wrapper">
             <h1>Day of ranger - pure javascript calendar</h1>
             <h2>date picker, range picker, multi picker with no dependencies and mobile friendly</h2>
+            <h3 style="color: #d80000;">Plugin is in alfa. Do not use for a productio yet.</h3>
         </div>
     </div>
     <div>
@@ -219,7 +220,7 @@
                         return  date.getDay() === 0;
                     };
                     var isDateDisabled = function(date) {
-                        return  date < new Date();
+                        return  date < new Date().setHours(0,0,0,0);//For now, must be reset to midnight If Today is allowed
                     };
                     var calendarRange = DORFactory.createCalendar('#calendarRange', {
                         type: 'range',
@@ -248,7 +249,7 @@
             return  date.getDay() === 0;
         };
         var isDateDisabled = function(date) {
-            return  date < new Date();
+            return  date < new Date().setHours(0,0,0,0);//For now, must be reset to midnight If Today is allowed
         };
         var calendarRange = DORFactory.createCalendar('#calendarRange', {
             type: 'range',
