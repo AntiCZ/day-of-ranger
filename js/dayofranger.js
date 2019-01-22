@@ -59,9 +59,7 @@
          * @param {Date} date
          */
         this.addDate = function(date) {
-            // === Can be used. Because comparing if it is the same instance of Date
-            // On the other hand this.state.from.getTime() === this.state.from.getTime() may be better???
-            if(this.state.from === this.state.to && this.state.from !== null)  {
+            if(this.state.from !== null && this.state.from.getTime() === this.state.to.getTime()) {
                 date < this.state.from ? this.state.from = date : this.state.to = date;
             } else {
                 this.state.from = this.state.to = date;
