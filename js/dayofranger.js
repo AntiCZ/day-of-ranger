@@ -557,7 +557,7 @@
     };
 
     DOR.prototype.parseToISODate = function(date) {
-        return date.split('T')[0];
+        return date.toISOString().split('T')[0];
     };
 
     var DORFactory = {

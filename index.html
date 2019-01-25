@@ -73,7 +73,7 @@
             <script>
                 (function(){
                     var parseDate = function(date){ 
-                        return date.split('T')[0];
+                        return date.toISOString().split('T')[0];
                     };
                     var setValueToInput = function(date){ 
                         document.querySelector('#calendarSingleV1').value = parseDate(this.getSelectedDate());
