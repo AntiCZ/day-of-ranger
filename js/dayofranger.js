@@ -557,7 +557,7 @@
     };
 
     DOR.prototype.parseToISODate = function(date) {
-        return date.getFullYear()+'-' + (date.getMonth()+1) + '-'+date.getDate();
+        return date.split('T')[0];
     };
 
     var DORFactory = {

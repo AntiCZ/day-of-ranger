@@ -73,7 +73,7 @@
             <script>
                 (function(){
                     var parseDate = function(date){ 
-                        return date.getDate() + '.' + (date.getMonth()+1) + '.' + date.getFullYear();
+                        return date.split('T')[0];
                     };
                     var setValueToInput = function(date){ 
                         document.querySelector('#calendarSingleV1').value = parseDate(this.getSelectedDate());
@@ -90,7 +90,7 @@
     <code class="js">
     (function(){
         var parseDate = function(date){ 
-            return date.getDate() + '.' + (date.getMonth()+1) + '.' + date.getFullYear();
+            return date.split('T')[0];
         };
         var setValueToInput = function(date){ 
             document.querySelector('#calendarSingleV1').value = parseDate(this.getSelectedDate());
@@ -112,11 +112,8 @@
 <input id="calendarPreselect" type="text" readonly />
 <script>
     (function(){
-        var parseDate = function(date) {
-            return date.getDate()+ '.' + (date.getMonth()+1) + '.' + date.getFullYear();
-        };
         var setValueToInput = function(date, parseToISO) { 
-            document.querySelector('#calendarPreselect').value = parseDate(date);
+            document.querySelector('#calendarPreselect').value = parseToISO(date);
         };
         var calendarSingle = DORFactory.createCalendar('#calendarPreselect', {
             datePreselected: new Date(), //if omit datePreselected and set afterInit you will get 1. 1. 1970
@@ -132,11 +129,8 @@
 
     <code class="js">
     (function(){
-        var parseDate = function(date) {
-            return date.getDate()+ '.' + (date.getMonth()+1) + '.' + date.getFullYear();
-        };
         var setValueToInput = function(date, parseToISO) { 
-            document.querySelector('#calendarPreselect').value = parseDate(date);
+            document.querySelector('#calendarPreselect').value = parseToISO(date);
         };
         var calendarSingle = DORFactory.createCalendar('#calendarPreselect', {
             datePreselected: new Date(), //if omit datePreselected and set afterInit you will get 1. 1. 1970
