@@ -156,9 +156,7 @@
             return dates;
         };
     };
-    function handleEvent(e) {
-        this['on' + e.type](e);
-      };
+
     var DOR = function(Utils) {
         this.holderElement;
         this.tableElement;
@@ -388,10 +386,14 @@
 
     DOR.prototype.eventHideCalendar = function (event) {
         if (event.target !== this.holderElement && !this.containerElement.contains(event.target)) {
-            this.utils.hideElement(this.containerElement);
-            window.removeEventListener('resize', this);
-            document.removeEventListener('mousedown', this);
+            this.hide();
         }
+    };
+
+    DOR.prototype.hide = function () {
+        this.utils.hideElement(this.containerElement);
+        window.removeEventListener('resize', this);
+        document.removeEventListener('mousedown', this);
     };
 
     DOR.prototype.getTableElement = function () {
@@ -550,7 +552,6 @@
 
     DOR.prototype.render = function() {
         var table = this.createTableNode();
-        this.containerElement.innerHTML = '';
         this.containerElement.appendChild(table);
         this.utils.setCss(this.containerElement, this.getContainerCss());
         document.body.appendChild(this.containerElement);
