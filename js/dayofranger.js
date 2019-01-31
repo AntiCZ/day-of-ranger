@@ -251,6 +251,8 @@
         this.utils.setCss(this.containerElement, {
             position: 'absolute',
             display: 'none',
+            transition: 'opacity 0.5s ease 0s',
+            opacity: 0,
         });
     };
 
@@ -353,9 +355,17 @@
 
     DOR.prototype.eventShowCalendar = function() {
         this.setPositionToContainer();
+
         this.utils.setCss(this.containerElement, {
             display: 'block',
         });
+
+        setTimeout(function(){
+            this.utils.setCss(this.containerElement, {
+                opacity: 1,
+            });
+        }.bind(this), 0);//has to be in another thread
+
         window.addEventListener('resize', this);// check this.eventHandler
         document.addEventListener('mousedown', this);//check this.eventHandler
     };
@@ -391,7 +401,14 @@
     };
 
     DOR.prototype.hide = function () {
-        this.utils.hideElement(this.containerElement);
+        this.utils.setCss(this.containerElement, {
+            opacity: 0,
+        });
+        setTimeout(function(){
+            this.utils.setCss(this.containerElement, {
+                display: 'none',
+            });
+        }.bind(this), 500);
         window.removeEventListener('resize', this);
         document.removeEventListener('mousedown', this);
     };
