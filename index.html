@@ -76,7 +76,7 @@
                         return date.toISOString().split('T')[0];
                     };
                     var setValueToInput = function(date){ 
-                        document.querySelector('#calendarSingleV1').value = parseDate(this.getSelectedDate());
+                        document.querySelector('#calendarSingleV1').value = parseDate(date);
                     };
                     var calendarSingle = DORFactory.createCalendar('#calendarSingleV1', {
                         afterPickDate: setValueToInput
@@ -93,7 +93,7 @@
             return date.toISOString().split('T')[0];
         };
         var setValueToInput = function(date){ 
-            document.querySelector('#calendarSingleV1').value = parseDate(this.getSelectedDate());
+            document.querySelector('#calendarSingleV1').value = parseDate(date);
         };
         var calendarSingle = DORFactory.createCalendar('#calendarSingleV1', {
             afterPickDate: setValueToInput
@@ -253,6 +253,58 @@
         });
     })();
     </code>
+</pre>
+<!-- END Range pick days -->
+
+ <!-- Range pick days - close aftef pick days -->
+</div>
+<div class="wrapper">
+    <h3>Range pick days - Close after pick dates</h3>
+    <input id="calendarRangeClose" type="text" readonly />
+    <input id="calendarRangeCloseHiddenFrom" type="hidden" />
+    <input id="calendarRangeCloseHiddenTo" type="hidden" />
+    <script>
+        (function(){
+            var setValueToInput = function(date, parseToISO, event) { 
+                var from = date.from.toLocaleDateString();
+                var to = date.to.toLocaleDateString();
+                document.querySelector('#calendarRangeClose').value = from + ' \u2794 ' + to;
+                document.querySelector('#calendarRangeCloseHiddenFrom').value = parseToISO(date.from);
+                document.querySelector('#calendarRangeCloseHiddenTo').value = parseToISO(date.to);
+                setTimeout(function(){ 
+                    date.from < date.to ? this.hide() : false;
+                }.bind(this), 300);
+            };
+            var calendarRange = DORFactory.createCalendar('#calendarRangeClose', {
+                type: 'range',
+                afterPickDate: setValueToInput,
+            });
+        })();
+    </script>
+<pre>
+<code  class="html">
+&lt;input id="calendarRange" type="text" readonly /&gt;
+&lt;input id="calendarRangeHiddenFrom" type="hidden" /&gt;
+&lt;input id="calendarRangeHiddenTo" type="hidden" /&gt;
+</code>
+<code class="js">
+(function(){
+    var setValueToInput = function(date, parseToISO, event) { 
+        var from = date.from.toLocaleDateString();
+        var to = date.to.toLocaleDateString();
+        document.querySelector('#calendarRangeClose').value = from + ' \u2794 ' + to;
+        document.querySelector('#calendarRangeCloseHiddenFrom').value = parseToISO(date.from);
+        document.querySelector('#calendarRangeCloseHiddenTo').value = parseToISO(date.to);
+        setTimeout(function(){ 
+            date.from < date.to ? this.hide() : false;
+        }.bind(this), 300);
+    };
+    var calendarRange = DORFactory.createCalendar('#calendarRangeClose', {
+        type: 'range',
+        afterPickDate: setValueToInput,
+    });
+})();
+</code>
 </pre>
 <!-- END Range pick days -->
         </div>
