@@ -423,7 +423,7 @@
      * @return {Date}
      */
     DOR.prototype.getFirstDayOfMonth = function(date) {
-        return new Date(new Date(date).setDate(1));
+        return new Date(new Date(new Date(date).setDate(1)).setMinutes(date.getTimezoneOffset() * -1));
     };
 
     /**
