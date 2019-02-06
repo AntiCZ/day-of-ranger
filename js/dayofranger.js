@@ -47,7 +47,7 @@
     };
 
     var DORPrickerRange = function(state, isDateSpecial, isDateDisabled) {
-        this.state = typeof state === 'undefined' ? {from: null, to: null} : {from: new Date(state.from.setHours(0,0,0,0)), to: new Date(state.to.setHours(0,0,0,0))};
+        this.state = typeof state === 'undefined' ? {from: null, to: null} : {from: new Date(state.from.setHours(0,state.from.getTimezoneOffset() * -1,0,0)), to: new Date(state.to.setHours(0,state.to.getTimezoneOffset() * -1,0,0))};
         this.isDateSpecial = typeof isDateSpecial === 'function' ? isDateSpecial : function(date){
             return false;
         };
@@ -86,7 +86,7 @@
     };
 
     var DORPrickerSingle = function(date, isDateSpecial, isDateDisabled) {
-        this.date = typeof date === 'undefined' ? null : new Date(date.setHours(0,0,0,0));
+        this.date = typeof date === 'undefined' ? null : new Date(date.setHours(0,date.getTimezoneOffset() * -1,0,0));
         this.isDateSpecial = typeof isDateSpecial === 'function' ? isDateSpecial : function(date){
             return false;
         };
