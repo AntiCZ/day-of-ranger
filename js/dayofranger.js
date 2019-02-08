@@ -253,6 +253,7 @@
             display: 'none',
             transition: 'opacity 0.5s ease 0s',
             opacity: 0,
+            zIndex: 10,
         });
     };
 
