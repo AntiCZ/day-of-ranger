@@ -314,6 +314,7 @@
 
         monthDays.forEach(function(date, index) {
             tr = (index + 1) % 7 === 1 ? document.createElement('tr') : tr;//create <tr> if first day of the week
+            date.setHours(0,0,0,0);
 
             td = document.createElement('td');
             span = document.createElement('span');
